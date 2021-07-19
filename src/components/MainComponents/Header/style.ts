@@ -44,7 +44,7 @@ export const Container = styled.header`
       height: 100%;
     }
 
-    li {
+    li:not(.button) {
       height: 100%;
 
       a {
@@ -79,6 +79,24 @@ export const Container = styled.header`
 
         &:hover:after {
           width: 100%;
+        }
+      }
+    }
+
+    li.button {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      a {
+        background-color: #ff8100;
+        border-radius: 4px;
+        color: #fff;
+        padding: 5px 10px;
+        margin: auto 0;
+
+        transition: all 0.4s;
+        &:hover {
+          filter: brightness(0.9);
         }
       }
     }

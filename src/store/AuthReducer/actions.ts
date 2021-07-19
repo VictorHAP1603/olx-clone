@@ -1,10 +1,9 @@
 import { Dispatch } from "redux";
 
-export const setEmail = (email: string) => {
+export const isLoggedVerification = () => {
   return (dispatch: Dispatch) => {
     dispatch({
-      type: "SET_EMAIL",
-      payload: { email },
+      type: "IS_LOGGED",
     });
   };
 };

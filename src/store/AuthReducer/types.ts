@@ -1,5 +1,5 @@
 export interface initialStateProps {
-  email: string;
+  isLogged: boolean;
 }
 
 export interface Action {
