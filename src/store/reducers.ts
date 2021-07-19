@@ -7,5 +7,4 @@ export const CombineReducers = combineReducers({
 });
 
 export * from "./UserReducer";
-
 export type State = ReturnType<typeof CombineReducers>;
