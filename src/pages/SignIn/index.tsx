@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 
 import { Container, PageArea } from "./style";
+
+import { useAuth } from "../../hooks/useAuth";
 import { useApi } from "../../services/api";
+
+import Error from "../../components/MainComponents/Error";
+import Input from "../../components/Partials/Input";
+import Button from "../../components/Partials/Button";
 
 export default function SignIn() {
   const { signIn } = useApi;
+  const { doLogin } = useAuth();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -15,32 +22,58 @@ export default function SignIn() {
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setDisabled(true);
+    setError("");
+
+    const json = await signIn(email, password);
+    setDisabled(false);
+
+    if (json.error) {
+      setError(json.error);
+    } else {
+      doLogin(json.token, checkbox);
+      window.location.href = "/";
+    }
   }
 
   return (
     <Container className="container">
       <h1>Login</h1>
       <PageArea>
+        {error && <Error>{error}</Error>}
         <form onSubmit={handleSubmit}>
           <div>
-            <label>
-              <span>E-mail</span>
-              <input type="email" disabled={disabled} />
-            </label>
+            <Input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={disabled}
+            >
+              E-mail
+            </Input>
 
-            <label>
-              <span>Senha</span>
-              <input type="password" disabled={disabled} />
-            </label>
+            <Input
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              disabled={disabled}
+            >
+              Senha
+            </Input>
 
-            <label className="check">
-              <span>Lembrar senha</span>
-              <input type="checkbox" />
-            </label>
+            <Input
+              className="check"
+              type="checkbox"
+              checked={checkbox}
+              onChange={(e) => setCheckbox(!checkbox)}
+            >
+              Lembrar senha
+            </Input>
 
-            <button type="submit" disabled={disabled}>
+            <Button type="submit" disabled={disabled}>
               Entrar
-            </button>
+            </Button>
           </div>
         </form>
       </PageArea>

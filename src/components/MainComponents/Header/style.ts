@@ -47,7 +47,9 @@ export const Container = styled.header`
     li:not(.button) {
       height: 100%;
 
-      a {
+      a,
+      button {
+        border: 0;
         min-width: 50px;
         margin: 0 20px;
         display: inline-block;

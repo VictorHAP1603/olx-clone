@@ -1,12 +1,11 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Container } from "./style";
 
-// import LogoImg from "../../../assets/menu-button.png";
+import { useAuth } from "../../../hooks/useAuth";
 
 export default function Header() {
-  const [isLogged, setIsLogged] = useState<boolean>(false);
+  const { isLogged, doLogout } = useAuth();
 
   return (
     <Container>
@@ -21,10 +20,20 @@ export default function Header() {
 
         <nav>
           <ul>
-            {isLogged ? (
-              <li className="button">
-                <Link to="/post-an-ad">Poste um anúncio</Link>
-              </li>
+            {isLogged() ? (
+              <>
+                <li>
+                  <Link to="/my-account">Minha Conta</Link>
+                </li>
+
+                <li>
+                  <button onClick={doLogout}>Sair</button>
+                </li>
+
+                <li className="button">
+                  <Link to="/post-an-ad">Poste um anúncio</Link>
+                </li>
+              </>
             ) : (
               <>
                 <li>
@@ -32,7 +41,7 @@ export default function Header() {
                 </li>
 
                 <li>
-                  <Link to="/cadastro">Cadastrar</Link>
+                  <Link to="/signup">Cadastrar</Link>
                 </li>
 
                 <li className="button">

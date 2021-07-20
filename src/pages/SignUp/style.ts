@@ -29,33 +29,6 @@ export const PageArea = styled.div`
     }
   }
 
-  label {
-    display: block;
-    width: 100%;
-
-    span {
-      display: block;
-      font-weight: bold;
-    }
-
-    input {
-      width: 100%;
-      font-size: 14px;
-      padding: 5px;
-      border: 1px solid #ddd;
-      border-radius: 3px;
-      outline: none;
-
-      background: #fff;
-      transition: 0.4s;
-
-      &:focus {
-        border-color: #333;
-        color: #333;
-      }
-    }
-  }
-
   label + label {
     margin-top: 20px;
   }
@@ -77,18 +50,9 @@ export const PageArea = styled.div`
   button {
     width: 100%;
     margin-top: 20px;
-    padding: 10px 20px;
     background-color: #0089ff;
-    border: 0;
-    outline: 0;
-    border-radius: 4px;
+
     font-size: 15px;
     color: #fff;
-
-    transition: 0.4s;
-
-    &:hover {
-      filter: brightness(0.8);
-    }
   }
 `;
