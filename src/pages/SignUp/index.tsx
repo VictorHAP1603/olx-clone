@@ -30,6 +30,8 @@ export default function SignUp() {
 
   const [statesList, setStatesList] = useState<IStateList[]>([]);
 
+  const [seePassword, setSeePassword] = useState<boolean>(false);
+
   useEffect(() => {
     const getStatesList = async () => {
       const list = await getStates();
@@ -68,14 +70,13 @@ export default function SignUp() {
         <form onSubmit={handleSubmit}>
           <div>
             <Input
+              titleLabel=" Nome Completo"
               type="text"
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
               disabled={disabled}
-            >
-              Nome Completo
-            </Input>
+            />
 
             <Select
               arrayOptions={statesList}
@@ -89,34 +90,31 @@ export default function SignUp() {
             />
 
             <Input
+              titleLabel="E-mail"
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={disabled}
-            >
-              E-mail
-            </Input>
+            />
 
             <Input
+              titleLabel="Senha"
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={disabled}
-            >
-              Senha
-            </Input>
+            />
 
             <Input
+              titleLabel="Confirmar senha"
               type="password"
               required
               value={confirmPassword}
               onChange={(e) => setConfirmPasword(e.target.value)}
               disabled={disabled}
-            >
-              Confirmar senha
-            </Input>
+            />
 
             <Button type="submit" disabled={disabled}>
               Cadastrar

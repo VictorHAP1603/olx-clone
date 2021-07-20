@@ -25,4 +25,15 @@ export const Container = styled.label`
       color: #333;
     }
   }
+
+  .see-icon {
+    position: relative;
+
+    .icon {
+      cursor: pointer;
+      position: absolute;
+      right: 10px;
+      top: 8px;
+    }
+  }
 `;

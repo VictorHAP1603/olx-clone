@@ -43,33 +43,31 @@ export default function SignIn() {
         <form onSubmit={handleSubmit}>
           <div>
             <Input
+              titleLabel="E-mail"
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={disabled}
-            >
-              E-mail
-            </Input>
+            />
 
             <Input
+              titleLabel="Senha"
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={disabled}
-            >
-              Senha
-            </Input>
+              seePassword={true}
+            />
 
             <Input
+              titleLabel="Lembrar senha"
               className="check"
               type="checkbox"
               checked={checkbox}
               onChange={(e) => setCheckbox(!checkbox)}
-            >
-              Lembrar senha
-            </Input>
+            />
 
             <Button type="submit" disabled={disabled}>
               Entrar
