@@ -1,6 +1,6 @@
 import { Container } from "./style";
 
-import { InputHTMLAttributes, useMemo, useState } from "react";
+import { InputHTMLAttributes, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement>;
