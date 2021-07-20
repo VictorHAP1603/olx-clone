@@ -1,21 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Container } from "./style";
 
-import { useDispatch, useSelector } from "react-redux";
-import { bindActionCreators } from "redux";
-import { AuthActionCreator, State } from "../../../store";
-
 // import LogoImg from "../../../assets/menu-button.png";
 
 export default function Header() {
-  const dispatch = useDispatch();
-  const { isLoggedVerification } = bindActionCreators(
-    AuthActionCreator,
-    dispatch
-  );
-
-  const { isLogged } = useSelector((state: State) => state.auth);
+  const [isLogged, setIsLogged] = useState<boolean>(false);
 
   return (
     <Container>
@@ -32,16 +23,20 @@ export default function Header() {
           <ul>
             {isLogged ? (
               <li className="button">
-                <Link to="">Poste um anúncio</Link>
+                <Link to="/post-an-ad">Poste um anúncio</Link>
               </li>
             ) : (
               <>
                 <li>
-                  <Link to="">Login</Link>
+                  <Link to="/signin">Login</Link>
                 </li>
 
                 <li>
-                  <Link to="">Cadastrar</Link>
+                  <Link to="/cadastro">Cadastrar</Link>
+                </li>
+
+                <li className="button">
+                  <Link to="/signin">Poste um anúncio</Link>
                 </li>
               </>
             )}
