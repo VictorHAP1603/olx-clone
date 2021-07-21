@@ -6,6 +6,7 @@ import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import About from "../pages/About";
 import NotFound from "../pages/NotFound";
+import AdPage from "../pages/AdPage";
 
 export default function AppRoutes() {
   return (
@@ -15,6 +16,7 @@ export default function AppRoutes() {
       <Route path="/signup" component={SignUp} />
 
       <Route path="/sobre" component={About} />
+      <Route path="/ad/:id" component={AdPage} />
 
       <Route>
         <NotFound />
