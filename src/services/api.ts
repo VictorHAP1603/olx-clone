@@ -1,24 +1,21 @@
 import { apiFetchGet, apiFetchPost } from "../helpers/requests";
-import { ISignInProps, IGetStatesProps, IRegisterProps } from "./typesApi";
+import {
+  ISignInJsonProps,
+  IRegisterJsonProps,
+  IGetCategoriesJsonProps,
+  IGetStatesJsonProps,
+  IGetAdsFunctionProps,
+  IGetRecentsAdsJsonProps,
+} from "./typesApi";
 
 export const useApi = {
-  signIn: async (email: string, password: string): Promise<ISignInProps> => {
+  signIn: async (email: string, password: string) => {
     const object = {
       endpoint: "/user/signin",
       body: { email: email, password: password },
     };
 
-    const json = await apiFetchPost(object);
-
-    return json;
-  },
-
-  getStates: async (): Promise<IGetStatesProps> => {
-    const object = {
-      endpoint: "/states",
-    };
-
-    const json = await apiFetchGet(object);
+    const json: ISignInJsonProps = await apiFetchPost(object);
 
     return json;
   },
@@ -28,7 +25,7 @@ export const useApi = {
     email: string,
     password: string,
     locationState: string
-  ): Promise<IRegisterProps> => {
+  ) => {
     const object = {
       endpoint: "/user/signup",
       body: {
@@ -39,8 +36,40 @@ export const useApi = {
       },
     };
 
-    const json = await apiFetchPost(object);
+    const json: IRegisterJsonProps = await apiFetchPost(object);
 
     return json;
+  },
+
+  // GETS
+  getStates: async () => {
+    const object = {
+      endpoint: "/states",
+    };
+
+    const json: IGetStatesJsonProps = await apiFetchGet(object);
+
+    return json.states;
+  },
+
+  getCategories: async () => {
+    const object = {
+      endpoint: "/categories",
+    };
+
+    const json: IGetCategoriesJsonProps = await apiFetchGet(object);
+
+    return json.categories;
+  },
+
+  getRecentAds: async ({ limit, sort }: IGetAdsFunctionProps) => {
+    const object = {
+      endpoint: "/ad/list",
+      body: { limit, sort },
+    };
+
+    const { ads, total }: IGetRecentsAdsJsonProps = await apiFetchGet(object);
+
+    return { ads, total };
   },
 };

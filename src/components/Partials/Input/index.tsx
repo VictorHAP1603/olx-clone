@@ -6,7 +6,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 type InputProps = InputHTMLAttributes<HTMLInputElement>;
 
 interface IInput extends InputProps {
-  titleLabel: string;
+  titleLabel?: string;
   seePassword?: boolean;
 }
 
@@ -22,13 +22,12 @@ export default function Input({
 
   function handleInput() {
     setIcon(!icon);
-
     icon ? setType("text") : setType("password");
   }
 
   return (
     <Container className={className}>
-      <span>{titleLabel}</span>
+      {titleLabel && <span>{titleLabel}</span>}
       {!seePassword ? (
         <input {...rest} />
       ) : (

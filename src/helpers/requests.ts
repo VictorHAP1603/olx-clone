@@ -3,9 +3,9 @@ import qs from "qs";
 
 const BASE_URL = "http://alunos.b7web.com.br:501";
 
-export type IApiFetchProps = {
+export type IApiFetchPostProps = {
   endpoint: string;
-  body?: {
+  body: {
     email?: string;
     password?: string;
     token?: string;
@@ -15,7 +15,21 @@ export type IApiFetchProps = {
   notallowed?: string;
 };
 
-export const apiFetchPost = async ({ endpoint, body }: IApiFetchProps) => {
+export type IApiFetchGetProps = {
+  endpoint: string;
+  body?: {
+    email?: string;
+    password?: string;
+    token?: string;
+    name?: string;
+    state?: string;
+    limit?: number;
+    sort?: "asc" | "desc";
+  };
+  notallowed?: string;
+};
+
+export const apiFetchPost = async ({ endpoint, body }: IApiFetchPostProps) => {
   if (body && !body.token) {
     let token = Cookies.get("token");
     if (token) {
@@ -42,7 +56,7 @@ export const apiFetchPost = async ({ endpoint, body }: IApiFetchProps) => {
   return json;
 };
 
-export const apiFetchGet = async ({ endpoint, body }: IApiFetchProps) => {
+export const apiFetchGet = async ({ endpoint, body }: IApiFetchGetProps) => {
   if (body && !body.token) {
     let token = Cookies.get("token");
     if (token) {

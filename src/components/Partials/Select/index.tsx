@@ -1,14 +1,12 @@
 import { Container } from "./style";
 
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, InputHTMLAttributes } from "react";
 
-interface iSelectProps {
-  titleLabel: string;
-  value: string;
-  onChange: ChangeEventHandler;
-  required: boolean;
-  disabled: boolean;
+// HTMLSelectElement
+type SelectProps = InputHTMLAttributes<HTMLSelectElement>;
 
+interface ISelectSpecificProps extends SelectProps {
+  titleLabel?: string;
   arrayOptions: {
     _id: string;
     name: string;
@@ -18,10 +16,11 @@ interface iSelectProps {
 export default function Select({
   titleLabel,
   arrayOptions,
+  className,
   ...rest
-}: iSelectProps) {
+}: ISelectSpecificProps) {
   return (
-    <Container>
+    <Container className={className}>
       <span>{titleLabel}</span>
       <select {...rest}>
         {arrayOptions.map(({ _id, name }) => (

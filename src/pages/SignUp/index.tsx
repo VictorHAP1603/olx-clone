@@ -30,12 +30,10 @@ export default function SignUp() {
 
   const [statesList, setStatesList] = useState<IStateList[]>([]);
 
-  const [seePassword, setSeePassword] = useState<boolean>(false);
-
   useEffect(() => {
     const getStatesList = async () => {
       const list = await getStates();
-      setStatesList(list.states);
+      setStatesList(list);
     };
 
     getStatesList();
@@ -70,7 +68,7 @@ export default function SignUp() {
         <form onSubmit={handleSubmit}>
           <div>
             <Input
-              titleLabel=" Nome Completo"
+              titleLabel="Nome Completo"
               type="text"
               required
               value={name}

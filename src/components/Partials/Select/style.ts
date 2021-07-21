@@ -11,6 +11,7 @@ export const Container = styled.label`
 
   select {
     width: 100%;
+    height: 100%;
     font-size: 14px;
     padding: 5px;
     border: 1px solid #ddd;
