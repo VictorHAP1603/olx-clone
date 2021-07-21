@@ -1,5 +1,4 @@
 import Button from "../../components/Partials/Button";
-import Select from "../../components/Partials/Select";
 import { Container, SearchArea, PageArea } from "./style";
 
 export default function Home() {
