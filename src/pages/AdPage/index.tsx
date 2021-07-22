@@ -1,7 +1,8 @@
-import { Container } from "./style";
 import { useParams } from "react-router-dom";
 import { useApi } from "../../services/api";
 import { useState } from "react";
+
+import { Container, Fake } from "./style";
 
 interface IUseParamsProps {
   id: string;
@@ -17,8 +18,24 @@ export default function AdPage() {
   return (
     <Container className="container">
       <div className="ad_container">
-        <div className="sideLeft"></div>
-        <div className="sideRight"></div>
+        <div className="sideLeft">
+          <div className="box">
+            <div className="adImage">
+              <img src="" alt="" />
+            </div>
+
+            <div className="adInfo">
+              <div className="adName">{loading && <Fake height={20} />}</div>
+              <div className="adDescription">
+                {loading && <Fake height={100} />}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="sideRight">
+          <div className="box">...</div>
+        </div>
       </div>
     </Container>
   );
