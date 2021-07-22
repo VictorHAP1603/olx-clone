@@ -64,6 +64,7 @@ export default function AdPage() {
               {loading && <Fake height={300} />}
               {adInfo?.images && <SlideImages images={adInfo?.images} />}
             </div>
+            
             <div className="adInfo">
               <div className="adName">
                 {loading && <Fake height={20} />}

@@ -15,7 +15,7 @@ export const Container = styled.section`
     margin-top: 20px;
 
     display: grid;
-    grid-template-columns: auto 250px;
+    grid-template-columns: 80% 20%;
     gap: 10px;
   }
 
@@ -31,12 +31,20 @@ export const Container = styled.section`
   }
 
   .sideLeft {
+    .box {
+      display: flex;
+    }
+
     .adImage {
-      width: 100%;
-      overflow-x: hidden;
+      border-radius: 5px 0 0 5px;
+
+      width: 320px;
+      height: 320px;
+      overflow: hidden;
     }
 
     .adInfo {
+      flex: 1;
       padding: 10px;
 
       .adName {
