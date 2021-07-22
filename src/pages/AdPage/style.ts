@@ -6,15 +6,16 @@ interface IFakeProps {
 
 export const Fake = styled.div<IFakeProps>`
   background-color: #ddd;
+
   height: ${(props) => props.height || 20}px;
 `;
 
 export const Container = styled.section`
-  margin-top: 20px;
-
   .ad_container {
+    margin-top: 20px;
+
     display: grid;
-    grid-template-columns: 1fr 250px;
+    grid-template-columns: auto 250px;
     gap: 10px;
   }
 
@@ -25,8 +26,14 @@ export const Container = styled.section`
     /* margin-bottom: 10px; */
   }
 
+  .box--padding {
+    padding: 10px;
+  }
+
   .sideLeft {
     .adImage {
+      width: 100%;
+      overflow-x: hidden;
     }
 
     .adInfo {
@@ -37,10 +44,20 @@ export const Container = styled.section`
       }
 
       .adDescription {
+        hr {
+          margin: 10px 0;
+        }
+
+        span {
+          font-weight: bold;
+        }
       }
     }
   }
 
-  .rightSide {
+  .sideRight {
+    .box + .box {
+      margin-top: 20px;
+    }
   }
 `;

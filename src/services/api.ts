@@ -2,10 +2,11 @@ import { apiFetchGet, apiFetchPost } from "../helpers/requests";
 import {
   ISignInJsonProps,
   IRegisterJsonProps,
+  IGetRecentsAdsFunctionProps,
   IGetCategoriesJsonProps,
   IGetStatesJsonProps,
-  IGetAdsFunctionProps,
   IGetRecentsAdsJsonProps,
+  IGetAdInfosJsonProps,
 } from "./typesApi";
 
 export const useApi = {
@@ -62,7 +63,7 @@ export const useApi = {
     return json.categories;
   },
 
-  getRecentAds: async ({ limit, sort }: IGetAdsFunctionProps) => {
+  getRecentAds: async ({ limit, sort }: IGetRecentsAdsFunctionProps) => {
     const object = {
       endpoint: "/ad/list",
       body: { limit, sort },
@@ -71,5 +72,16 @@ export const useApi = {
     const { ads, total }: IGetRecentsAdsJsonProps = await apiFetchGet(object);
 
     return { ads, total };
+  },
+
+  getInfosAd: async (id: string, others: boolean = false) => {
+    const object = {
+      endpoint: "/ad/item",
+      body: { id, others },
+    };
+
+    const json: IGetAdInfosJsonProps = await apiFetchGet(object);
+
+    return json;
   },
 };

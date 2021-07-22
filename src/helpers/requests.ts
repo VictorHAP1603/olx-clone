@@ -25,6 +25,7 @@ export type IApiFetchGetProps = {
     state?: string;
     limit?: number;
     sort?: "asc" | "desc";
+    others?: boolean;
   };
   notallowed?: string;
 };

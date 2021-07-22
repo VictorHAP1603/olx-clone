@@ -1,6 +1,6 @@
 // ==================================== FUNCTIONS PROPS  =======================================
 
-export interface IGetAdsFunctionProps {
+export interface IGetRecentsAdsFunctionProps {
   sort: "desc" | "asc";
   limit: number;
 }
@@ -42,4 +42,28 @@ export interface IGetRecentsAdsJsonProps {
     image: string;
   }[];
   total: number;
+}
+
+export interface IGetAdInfosJsonProps {
+  category: {
+    name: string;
+    slug: string;
+    _id: string;
+  };
+  dateCreated: string;
+  description: string;
+  id: string;
+  images: string[];
+  // others:
+  price: number;
+  priceNegotiable: boolean;
+  stateName: string;
+  title: string;
+
+  userInfo: {
+    name: string;
+    email: string;
+  };
+
+  views: number;
 }
