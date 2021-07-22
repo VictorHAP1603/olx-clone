@@ -1,6 +1,6 @@
 import { Container } from "./style";
 
-import { ChangeEventHandler, InputHTMLAttributes } from "react";
+import { InputHTMLAttributes } from "react";
 
 // HTMLSelectElement
 type SelectProps = InputHTMLAttributes<HTMLSelectElement>;

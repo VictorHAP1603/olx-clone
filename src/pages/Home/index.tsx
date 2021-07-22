@@ -30,12 +30,12 @@ interface IAdsListProps {
   image: string;
 }
 
+const { getStates, getCategories, getRecentAds } = useApi;
+
 export default function Home() {
   const [stateList, setStateList] = useState<IStateListProps[]>([]);
   const [categoryList, setCategoryList] = useState<ICategoryListProps[]>([]);
   const [adsList, setAdsList] = useState<IAdsListProps[]>([]);
-
-  const { getStates, getCategories, getRecentAds } = useApi;
 
   useEffect(() => {
     const getStatesList = async () => {
@@ -44,7 +44,7 @@ export default function Home() {
     };
 
     getStatesList();
-  }, [getStates]);
+  }, []);
 
   useEffect(() => {
     const getCategoryList = async () => {
@@ -53,7 +53,7 @@ export default function Home() {
     };
 
     getCategoryList();
-  }, [getCategories]);
+  }, []);
 
   useEffect(() => {
     const getRecentAdsList = async () => {
@@ -65,7 +65,7 @@ export default function Home() {
     };
 
     getRecentAdsList();
-  }, [getRecentAds]);
+  }, []);
 
   return (
     <>

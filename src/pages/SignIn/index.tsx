@@ -9,8 +9,9 @@ import Error from "../../components/MainComponents/Error";
 import Input from "../../components/Partials/Input";
 import Button from "../../components/Partials/Button";
 
+const { signIn } = useApi;
+
 export default function SignIn() {
-  const { signIn } = useApi;
   const { doLogin } = useAuth();
 
   const [email, setEmail] = useState<string>("");

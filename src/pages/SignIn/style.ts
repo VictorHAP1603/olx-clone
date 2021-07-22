@@ -69,8 +69,9 @@ export const PageArea = styled.div`
     cursor: pointer;
 
     input {
-      flex: 0.1;
       margin-left: 10px;
+      height: 15px;
+      width: 20px;
     }
   }
 

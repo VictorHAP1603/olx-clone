@@ -15,8 +15,9 @@ interface IStateList {
   name: string;
 }
 
+const { getStates, register } = useApi;
+
 export default function SignUp() {
-  const { getStates, register } = useApi;
   const { doLogin } = useAuth();
 
   const [name, setName] = useState<string>("");
@@ -37,7 +38,7 @@ export default function SignUp() {
     };
 
     getStatesList();
-  }, [getStates]);
+  }, []);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
