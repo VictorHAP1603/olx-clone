@@ -7,6 +7,7 @@ import { useApi } from "../../services/api";
 import { dateFormated } from "../../helpers/dateFormat";
 
 import { Container, Fake } from "./style";
+import { amountFormat } from "../../helpers/amountFormat";
 
 interface IUseParamsProps {
   id: string;
@@ -61,10 +62,10 @@ export default function AdPage() {
         <div className="sideLeft">
           <div className="box">
             <div className="adImage">
-              {loading && <Fake height={300} />}
+              {loading && <Fake height={320} />}
               {adInfo?.images && <SlideImages images={adInfo?.images} />}
             </div>
-            
+
             <div className="adInfo">
               <div className="adName">
                 {loading && <Fake height={20} />}
@@ -78,13 +79,15 @@ export default function AdPage() {
                 {loading && <Fake height={100} />}
                 {adInfo?.description && <p>{adInfo.description}</p>}
 
-                <hr />
-                {adInfo?.views && (
-                  <small>
-                    <span>{adInfo?.views} </span>
-                    {adInfo?.views > 1 ? "vizualizações" : "vizualização"}
-                  </small>
-                )}
+                <div>
+                  <hr />
+                  {adInfo?.views && (
+                    <small>
+                      <span>{adInfo?.views} </span>
+                      {adInfo?.views > 1 ? "vizualizações" : "vizualização"}
+                    </small>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -93,10 +96,35 @@ export default function AdPage() {
         <div className="sideRight">
           <div className="box box--padding">
             {loading && <Fake height={20} />}
+
+            {adInfo?.priceNegotiable ? (
+              "Preço Negociável"
+            ) : (
+              <div className="price">
+                Preço: <span>{amountFormat(Number(adInfo?.price))}</span>
+              </div>
+            )}
           </div>
-          <div className="box box--padding">
-            {loading && <Fake height={50} />}
-          </div>
+          {loading && <Fake height={50} />}
+
+          {adInfo?.userInfo && (
+            <>
+              <a
+                href={`mailto:${adInfo?.userInfo.email}`}
+                className="contact_link"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Fale com o vendedor
+              </a>
+
+              <div className="box box--padding created-by">
+                <strong>{adInfo?.userInfo.name}</strong>
+                <small>E-mail: {adInfo?.userInfo.email}</small>
+                <small>Estado: {adInfo?.stateName}</small>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </Container>

@@ -25,6 +25,10 @@ export const GlobalStyles = createGlobalStyle`
         list-style: none;
     }
     
+    a {
+        text-decoration: none;
+    }
+
     .container {
         max-width: 1024px;
         height: 100%;
