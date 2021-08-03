@@ -129,3 +129,30 @@ export const Container = styled.section`
     }
   }
 `;
+
+export const OthersArea = styled.div`
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+
+    .adItem {
+      width: 25%;
+    }
+  }
+`;
+
+export const BreadCrumb = styled.div`
+  font-size: 1.2rem;
+  margin-top: 1rem;
+
+  a {
+    display: inline-block;
+    margin: 0 5px;
+    text-decoration: underline;
+    color: #000;
+  }
+`;

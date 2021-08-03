@@ -35,4 +35,9 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0 auto;
     }
 
+    input[disabled] {
+        cursor: not-allowed;
+        opacity: .6;
+    }
+
 `;

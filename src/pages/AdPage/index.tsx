@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import SlideImages from "../../components/Partials/SlideImages";
+import AdItem from "../../components/Partials/AdItem";
+import { Container, Fake, OthersArea, BreadCrumb } from "./style";
 
 import { useApi } from "../../services/api";
 import { dateFormated } from "../../helpers/dateFormat";
 
-import { Container, Fake } from "./style";
 import { amountFormat } from "../../helpers/amountFormat";
 
 interface IUseParamsProps {
@@ -23,7 +24,14 @@ interface IAdInfoProps {
   description: string;
   id: string;
   images: string[];
-  // others:
+  others?: {
+    title: string;
+    priceNegotiable: boolean;
+    price: number;
+    image: string;
+    className: string;
+    id: string;
+  }[];
   price: number;
   priceNegotiable: boolean;
   stateName: string;
@@ -58,6 +66,18 @@ export default function AdPage() {
 
   return (
     <Container className="container">
+      <BreadCrumb>
+        Você está aqui:
+        <Link to="/">Home</Link>/
+        <Link to={`/ads?state=${adInfo?.stateName}`}>{adInfo?.stateName}</Link>/
+        <Link
+          to={`/ads?state=${adInfo?.stateName}&cat=${adInfo?.category.slug}`}
+        >
+          {adInfo?.category.name}
+        </Link>
+        /{adInfo?.title}
+      </BreadCrumb>
+
       <div className="ad_container">
         <div className="sideLeft">
           <div className="box">
@@ -127,6 +147,20 @@ export default function AdPage() {
           )}
         </div>
       </div>
+
+      <OthersArea>
+        {adInfo?.others && (
+          <>
+            <h2>Outras Ofertas do Vendedor</h2>
+
+            <div className="list">
+              {adInfo.others.map((i, index) => (
+                <AdItem key={index} data={{ ...i, className: "adItem" }} />
+              ))}
+            </div>
+          </>
+        )}
+      </OthersArea>
     </Container>
   );
 }

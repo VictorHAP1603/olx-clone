@@ -106,15 +106,13 @@ export default function Home() {
       <PageArea className="container">
         <h2>Anúncios Recentes</h2>
         <div className="list-ads">
-          {adsList.map(({ id, title, priceNegotiable, price, image }) => (
+          {adsList.map((i) => (
             <AdItem
-              title={title}
-              id={id}
-              priceNegotiable={priceNegotiable}
-              price={price}
-              image={image}
-              className="category-item"
-              key={id}
+              data={{
+                ...i,
+                className: "category-item",
+              }}
+              key={i.id}
             />
           ))}
         </div>

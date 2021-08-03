@@ -1,5 +1,10 @@
 import Cookies from "js-cookie";
 import qs from "qs";
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: "http://alunos.b7web.com.br:501",
+});
 
 const BASE_URL = "http://alunos.b7web.com.br:501";
 
@@ -38,16 +43,9 @@ export const apiFetchPost = async ({ endpoint, body }: IApiFetchPostProps) => {
     }
   }
 
-  const res = await fetch(`${BASE_URL + endpoint}`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+  api.defaults.headers.ContentType = "application/json";
 
-  const json = await res.json();
+  const json = await (await api.post(endpoint, body)).data;
 
   if (json.notallowed) {
     window.location.href = "/signin";
@@ -65,9 +63,25 @@ export const apiFetchGet = async ({ endpoint, body }: IApiFetchGetProps) => {
     }
   }
 
-  const res = await fetch(`${BASE_URL + endpoint}?${qs.stringify(body)}`);
+  const json = await (await api.get(`${endpoint}?${qs.stringify(body)}`)).data;
 
-  const json = await res.json();
+  if (json.notallowed) {
+    window.location.href = "/signin";
+    return;
+  }
+
+  return json;
+};
+
+export const apiFetchFile = async ({ endpoint, body }: any) => {
+  if (body && !body.token) {
+    let token = Cookies.get("token");
+    if (token) {
+      body.append("token", token);
+    }
+  }
+
+  const json = await (await api.post(endpoint, body)).data;
 
   if (json.notallowed) {
     window.location.href = "/signin";

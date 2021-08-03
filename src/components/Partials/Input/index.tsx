@@ -8,6 +8,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement>;
 interface IInput extends InputProps {
   titleLabel?: string;
   seePassword?: boolean;
+  ref?: React.RefObject<HTMLInputElement>;
 }
 
 export default function Input({
@@ -15,6 +16,7 @@ export default function Input({
   seePassword,
   className,
   children,
+  ref,
   ...rest
 }: IInput) {
   const [icon, setIcon] = useState<boolean>(true);
@@ -29,7 +31,7 @@ export default function Input({
     <Container className={className}>
       {titleLabel && <span>{titleLabel}</span>}
       {!seePassword ? (
-        <input {...rest} />
+        <input {...rest} ref={ref} />
       ) : (
         <div className="see-icon">
           <input {...rest} type={type} />

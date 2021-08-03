@@ -1,26 +1,47 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
 
-import Home from "../pages/Home";
+import { Switch } from "react-router-dom";
+import { RouteAuth } from "../components/MainComponents/RouteAuth";
+
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+
+import Home from "../pages/Home";
 import About from "../pages/About";
 import NotFound from "../pages/NotFound";
 import AdPage from "../pages/AdPage";
+import AddAd from "../pages/AddAd";
 
-export default function AppRoutes() {
+export default function Routes() {
   return (
     <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/signin" component={SignIn} />
-      <Route path="/signup" component={SignUp} />
+      <RouteAuth path="/" exact>
+        <Home />
+      </RouteAuth>
 
-      <Route path="/sobre" component={About} />
-      <Route path="/ad/:id" component={AdPage} />
+      <RouteAuth path="/signin">
+        <SignIn />
+      </RouteAuth>
 
-      <Route>
+      <RouteAuth path="/signup">
+        <SignUp />
+      </RouteAuth>
+
+      <RouteAuth path="/sobre">
+        <About />
+      </RouteAuth>
+
+      <RouteAuth path="/ad/:id">
+        <AdPage />
+      </RouteAuth>
+
+      <RouteAuth privateRoute path="/post-an-ad">
+        <AddAd />
+      </RouteAuth>
+
+      <RouteAuth path="*">
         <NotFound />
-      </Route>
+      </RouteAuth>
     </Switch>
   );
 }

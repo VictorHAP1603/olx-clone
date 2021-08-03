@@ -4,22 +4,19 @@ import { amountFormat } from "../../../helpers/amountFormat";
 import { Container } from "./style";
 
 interface IAdItemProps {
-  title: string;
-  priceNegotiable: boolean;
-  price: number;
-  image: string;
-  className: string;
-  id: string;
+  data: {
+    title: string;
+    priceNegotiable: boolean;
+    price: number;
+    image: string;
+    className?: string;
+    id: string;
+  };
 }
 
-export default function AdItem({
-  className,
-  title,
-  priceNegotiable,
-  price,
-  image,
-  id,
-}: IAdItemProps) {
+export default function AdItem({ data }: IAdItemProps) {
+  const { title, price, image, className, id, priceNegotiable } = data;
+
   const modifyTitle = useMemo(() => {
     const titleLenght = title.split("").length;
 

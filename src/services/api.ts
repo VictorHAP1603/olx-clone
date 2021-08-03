@@ -1,4 +1,4 @@
-import { apiFetchGet, apiFetchPost } from "../helpers/requests";
+import { apiFetchGet, apiFetchPost, apiFetchFile } from "../helpers/requests";
 import {
   ISignInJsonProps,
   IRegisterJsonProps,
@@ -81,6 +81,21 @@ export const useApi = {
     };
 
     const json: IGetAdInfosJsonProps = await apiFetchGet(object);
+
+    return json;
+  },
+
+  //Posts
+
+  postAddAd: async (fData: FormData) => {
+    const object = {
+      endpoint: "/ad/add",
+      body: fData,
+    };
+
+    const json: { id?: string; error?: string } = await apiFetchFile(object);
+
+    console.log(json);
 
     return json;
   },
